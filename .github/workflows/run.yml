@@ -1,0 +1,27 @@
+name: "Run"
+run-name: "Run"
+
+on:
+  workflow_dispatch:
+    inputs:
+      myVar:
+        description: My Variable
+        required: false
+        default: My variable is not defined
+        type: string
+  workflow_call:
+    inputs:
+      myVar:
+        description: My Variable
+        required: false
+        default: My variable is not defined
+        type: string
+jobs:
+  Run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print variables
+        run: |
+          echo "My Variable: ${{ inputs.myVar }}"
+          echo "Centralized Variable: ${{ vars.CENTRALIZED }}"
+          echo "Caller Variable: ${{ vars.CALLER }}"
